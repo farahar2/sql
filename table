@@ -1,0 +1,31 @@
+CREATE TABLE library_books(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    author VARCHAR(100),
+    published_year YEAR,
+    status ENUM('Available','Borrowed','Lost'),
+    price DECIMAL(10,2)
+);
+DESCRIBE library_books;
+DROP TABLE library_books;
+
+INSERT INTO library_books (title, author, published_year, status, price) VALUES
+('The Lion, the Witch and the Wardrobe', 'C.S. Lewis', 1950, 'Available', 120.50),
+('Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 1997, 'Borrowed', 200.00),
+('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', 1998, 'Available', 210.00),
+('The Hobbit', 'J.R.R. Tolkien', 1937, 'Available', 180.75),
+('The Lord of the Rings', 'J.R.R. Tolkien', 1954, 'Borrowed', 300.00),
+('To Kill a Mockingbird', 'Harper Lee', 1960, 'Available', 140.20),
+('1984', 'George Orwell', 1949, 'Lost', 130.60),
+('Donated PHP Book', 'Unknown', 2023, 'Available', NULL);
+
+SELECT title,author,price FROM library_books;
+SELECT * FROM library_books WHERE price BETWEEN 100 AND 300;
+SELECT * FROM library_books WHERE published_year > 2020;
+SELECT * FROM library_books WHERE title LIKE '%PHP%';
+SELECT * FROM library_books WHERE status != 'Lost' ORDER BY published_year DESC;
+SELECT DISTINCT author FROM library_books;
+SELECT UPPER(title) AS book_title, 
+ROUND(price) AS price
+FROM library_books;
+
