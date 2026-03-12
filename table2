@@ -1,0 +1,35 @@
+CREATE TABLE categories(
+id INT PRIMARY KEY,
+name VARCHAR(100)
+);
+
+INSERT INTO categories (id, name) VALUES
+(1, 'Fantasy'),
+(2, 'Classic Literature'),
+(3, 'Programming');
+
+ALTER TABLE library_books 
+ADD category_id INT;
+
+ALTER TABLE library_books
+ADD FOREIGN KEY (category_id)
+REFERENCES categories(id);
+
+UPDATE library_books
+SET category_id = 1
+WHERE author IN ('C.S. Lewis','J.K. Rowling','J.R.R. Tolkien');
+UPDATE library_books
+SET category_id = 2
+WHERE author IN ('Harper Lee','George Orwell');
+UPDATE library_books
+SET category_id = 3
+WHERE title LIKE '%PHP%';
+
+SELECT 
+library_books.title, categories.name
+FROM library_books
+INNER JOIN categories ON  library_books.category_id = categories.id;
+
+
+
+

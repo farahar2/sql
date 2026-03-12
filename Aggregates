@@ -1,0 +1,15 @@
+SELECT SUM(price) AS TotalValue
+FROM library_books;
+
+SELECT COUNT(id) AS TotalBooks
+FROM library_books
+WHERE status = 'Available';
+
+SELECT 
+MAX(price) AS MostExpensivePrice,
+MIN(price) AS CheapestPrice
+FROM library_books;
+
+SELECT AVG(price) AS AveragePrice
+FROM library_books;
+
